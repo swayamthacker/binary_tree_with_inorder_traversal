@@ -8,86 +8,71 @@ int x;
 treenode *lptr;
 treenode *rptr;
 };
+
 treenode *btroot = 0;
-//treenode** root_1 = &root;
 int temp = -1;
 int store,initial;
 int element;
-//int elem;
+
 int insertnode(treenode *&,int);
 void inordertraversal(treenode *);
 
-int insertnode(treenode *&root, int element) //need reference to root, as the value of root will be
-//changed
+int insertnode(treenode *&root, int element) 
+//need reference to root, as the value of root will be changed
 {
-if(root == 0)
-{
-root = new treenode;
-root->lptr = 0;
-root->rptr = 0;
-root->x = element;
-return root->x;
-}
-else if(element < root->x)
-{
-return insertnode(root->lptr,element);
-}
-else
-{
-return insertnode(root->rptr,element);
-}
+    if(root == 0)
+    {
+        root = new treenode;
+        root->lptr = 0;
+        root->rptr = 0;
+        root->x = element;
+        return root->x;
+    }
+    else if(element < root->x)
+    {
+        return insertnode(root->lptr,element);
+    }
+    else
+    {
+        return insertnode(root->rptr,element);
+    }
 }
 
 void inordertraversal(treenode *root)
 {
     if(root!=0)
-{
-//cout<<"I get here"<<endl;
-inordertraversal(root->lptr);
-cout<<root->x<<" "<<endl;
-inordertraversal(root->rptr);
-//cout<<"I am getting here"<<endl;
-}
-/*else
-{
-cout<<"Something is wrong"<<endl;
-}*/
+    {
+        inordertraversal(root->lptr);
+        cout<<root->x<<" "<<endl;
+        inordertraversal(root->rptr);
+    }
 }
 
 
 int main()
 {
-//cout<<"Please enter the root element"<<endl;
-//cin>>initial;
-//if(root == NULL)
-//{
-//root = new treenode;
-//root->x = initial;
-//}
-while(temp!=0)
-{
-cout<<"Enter 1 to keep adding values to the tree"<<endl;
-cout<<"Enter 2 to stop entering values in the tree and display the sorted tree"<<endl;
-cout<<"Enter 0 to exit"<<endl;
-cin>>temp;
+    while(temp!=0)
+    {
+        cout<<"Enter 1 to keep adding values to the tree"<<endl;
+        cout<<"Enter 2 to stop entering values in the tree and display the sorted tree"<<endl;
+        cout<<"Enter 0 to exit"<<endl;
+        cin>>temp;
 
-switch(temp)
-{
-case 1:
-{
-cout<<"Please enter the value to be added to the tree"<<endl;
-cin>>store;
-
-insertnode(btroot,store);
-break;
-}
-case 2:
-{
-inordertraversal(btroot);
-//cout<<"I am getting here"<<endl;
-break;
-}
-}
-}
-return 0;
+        switch(temp)
+        {
+            case 1:
+            {
+                cout<<"Please enter the value to be added to the tree"<<endl;
+                cin>>store;
+                insertnode(btroot,store);
+                break;
+            }
+            case 2:
+            {
+                inordertraversal(btroot);
+                break;
+            }
+        }
+    }
+    return 0;
 }
